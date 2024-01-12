@@ -9,6 +9,7 @@ namespace ChessGame
         static void Main(string[] args)
         {
             Board ChessBoard = new Board(8, 8);
+            Screen.showBoard(ChessBoard);
         }
     }
 }
