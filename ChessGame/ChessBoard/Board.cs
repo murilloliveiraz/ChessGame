@@ -26,6 +26,10 @@ namespace ChessGame.ChessBoard
 
         public void PutPiece(Piece piece, Position position)
         {
+            if(IsPositionOccupied(position))
+            {
+                throw new BoardExceptions("Já existe uma peça nessa posição!");
+            }
             Pieces[position.Line, position.Column] = piece;
         }
 
