@@ -16,5 +16,10 @@ namespace ChessGame.ChessBoard
             AmountOfMovements = 0;
             Board = board;
         }
+
+        public void IncreaseAmountOfMovements()
+        {
+            AmountOfMovements++;
+        }
     }
 }
