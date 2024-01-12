@@ -9,9 +9,20 @@ namespace ChessGame
     {
         static void Main(string[] args)
         {
-            ChessPosition position = new ChessPosition('c', 7);
-            Console.WriteLine(position);
-            Console.WriteLine(position.toBoardPosition());
+            try
+            {
+                Board board = new Board(8, 8);
+                board.PutPiece(new Rook(board, Color.Black), new Position(0, 0));
+                board.PutPiece(new Rook(board, Color.Black), new Position(1, 3));
+                board.PutPiece(new King(board, Color.Black), new Position(0, 2));
+
+                board.PutPiece(new Rook(board, Color.White), new Position(3, 5));
+                Screen.showBoard(board);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("ERRO: " + e);
+            }
         }
     }
 }
