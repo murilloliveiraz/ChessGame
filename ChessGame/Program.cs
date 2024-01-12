@@ -12,12 +12,19 @@ namespace ChessGame
             try
             {
                 ChessMatch match = new ChessMatch();
-                /*board.PutPiece(new Rook(board, Color.Black), new Position(0, 0));
-                board.PutPiece(new Rook(board, Color.Black), new Position(1, 3));
-                board.PutPiece(new King(board, Color.Black), new Position(0, 2));
+                while (!match.Finished)
+                {
+                    Console.Clear();
+                    Screen.showBoard(match.board);
 
-                board.PutPiece(new Rook(board, Color.White), new Position(3, 5));*/
-                Screen.showBoard(match.board);
+                    Console.WriteLine();
+                    Console.Write("Origem: ");
+                    Position origin = Screen.ReadChessMovement().toBoardPosition();
+                    Console.Write("Destino: ");
+                    Position destiny = Screen.ReadChessMovement().toBoardPosition();
+
+                    match.makeMovement(origin, destiny);
+                }
             }
             catch(Exception e)
             {

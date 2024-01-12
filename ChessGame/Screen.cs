@@ -1,4 +1,5 @@
 ﻿using ChessGame.ChessBoard;
+using Chess;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -45,6 +46,14 @@ namespace ChessGame
                 Console.Write(piece);
                 Console.ForegroundColor = aux;
             }
+        }
+
+        public static ChessPosition ReadChessMovement()
+        {
+            string movement = Console.ReadLine();
+            char column = movement[0];
+            int line = int.Parse(movement[1] + "");
+            return new ChessPosition(column, line);
         }
     }
 }
