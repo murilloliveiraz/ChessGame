@@ -63,7 +63,7 @@ namespace ChessGame
             }
             else
             {
-                if (piece.color == Color.White)
+                if (piece.color == Color.Branco)
                 {
                     Console.Write(piece);
                 }

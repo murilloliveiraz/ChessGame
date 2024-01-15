@@ -2,8 +2,8 @@
 {
     internal enum Color
     {
-        White,
-        Black,
-        Yellow
+        Branco,
+        Preto,
+        Amarelo
     }
 }

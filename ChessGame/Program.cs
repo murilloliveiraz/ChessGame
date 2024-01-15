@@ -15,6 +15,9 @@ namespace ChessGame
                 {
                     Console.Clear();
                     Screen.showBoard(match.board);
+                    Console.WriteLine();
+                    Console.WriteLine("Turno: " + match.turn);
+                    Console.WriteLine("Aguardando jogada do Jogador: "+ match.currentPlayer);
 
                     Console.WriteLine();
                     Console.Write("Origem: ");
@@ -29,7 +32,7 @@ namespace ChessGame
                     Console.Write("Destino: ");
                     Position destiny = Screen.readChessMovement().toBoardPosition();
 
-                    match.makeMovement(origin, destiny);
+                    match.chessMove(origin, destiny);
                 }
             }
             catch (Exception e)
