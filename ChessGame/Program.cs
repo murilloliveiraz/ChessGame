@@ -1,5 +1,4 @@
 ﻿using ChessBoard;
-using ChessGame.ChessBoard;
 using Chess;
 using System;
 
@@ -12,28 +11,28 @@ namespace ChessGame
             try
             {
                 ChessMatch match = new ChessMatch();
-                while (!match.Finished)
+                while (!match.finished)
                 {
                     Console.Clear();
                     Screen.showBoard(match.board);
 
                     Console.WriteLine();
                     Console.Write("Origem: ");
-                    Position origin = Screen.ReadChessMovement().toBoardPosition();
+                    Position origin = Screen.readChessMovement().toBoardPosition();
 
-                    bool[,] possibleMovements = match.board.Piece(origin).PossibleMovements();
+                    bool[,] possiblePositions = match.board.piece(origin).possibleMovements();
 
                     Console.Clear();
-                    Screen.showBoard(match.board, possibleMovements);
+                    Screen.showBoard(match.board, possiblePositions);
 
                     Console.WriteLine();
                     Console.Write("Destino: ");
-                    Position destiny = Screen.ReadChessMovement().toBoardPosition();
+                    Position destiny = Screen.readChessMovement().toBoardPosition();
 
                     match.makeMovement(origin, destiny);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine("ERRO: " + e);
             }

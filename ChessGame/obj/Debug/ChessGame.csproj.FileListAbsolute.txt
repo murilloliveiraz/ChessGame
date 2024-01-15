@@ -12,3 +12,10 @@ C:\Users\Muril\OneDrive\Documentos\ChessGame\ChessGame\obj\Debug\ChessGame.cspro
 C:\Users\Muril\OneDrive\Documentos\ChessGame\ChessGame\obj\Debug\ChessGame.csproj.CoreCompileInputs.cache
 C:\Users\Muril\OneDrive\Documentos\ChessGame\ChessGame\obj\Debug\ChessGame.exe
 C:\Users\Muril\OneDrive\Documentos\ChessGame\ChessGame\obj\Debug\ChessGame.pdb
+C:\Users\david.soares\OneDrive - Cobreflex\Documentos\estudos\ChessGameeeee\ChessGame\obj\Debug\ChessGame.csproj.AssemblyReference.cache
+C:\Users\david.soares\OneDrive - Cobreflex\Documentos\estudos\ChessGameeeee\ChessGame\obj\Debug\ChessGame.csproj.CoreCompileInputs.cache
+C:\Users\david.soares\OneDrive - Cobreflex\Documentos\estudos\ChessGameeeee\ChessGame\obj\Debug\ChessGame.exe
+C:\Users\david.soares\OneDrive - Cobreflex\Documentos\estudos\ChessGameeeee\ChessGame\obj\Debug\ChessGame.pdb
+C:\Users\david.soares\OneDrive - Cobreflex\Documentos\estudos\ChessGameeeee\ChessGame\bin\Debug\ChessGame.exe.config
+C:\Users\david.soares\OneDrive - Cobreflex\Documentos\estudos\ChessGameeeee\ChessGame\bin\Debug\ChessGame.exe
+C:\Users\david.soares\OneDrive - Cobreflex\Documentos\estudos\ChessGameeeee\ChessGame\bin\Debug\ChessGame.pdb

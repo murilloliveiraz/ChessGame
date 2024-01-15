@@ -1,12 +1,10 @@
 ﻿using ChessBoard;
-using ChessGame.ChessBoard;
-using System.Runtime.ConstrainedExecution;
 
 namespace Chess
 {
     internal class Rook : Piece
     {
-        public Rook( Board board, Color color) : base(board, color)
+        public Rook(Board board, Color color) : base(board, color)
         {
         }
         public override string ToString()
@@ -16,61 +14,64 @@ namespace Chess
 
         private bool canMove(Position position)
         {
-        Piece p = Board.Piece(position);
-        return p == null || p.Color != Color;
+            Piece p = board.piece(position);
+            return p == null || p.color != color;
         }
 
-        public override bool[,] PossibleMovements()
+        public override bool[,] possibleMovements()
         {
-            bool[,] mat = new bool[Board.Lines, Board.Columns];
+            bool[,] mat = new bool[board.lines, board.columns];
 
-            Position position = new Position(0, 0);
+            Position pos = new Position(0, 0);
 
-            //up
-            position.SetValues(position.Line - 1, position.Column);
-            while (Board.IsPositionValid(position) && canMove(position))
+            // acima
+            pos.setValues(position.line - 1, position.column);
+            while (board.isPositionValid(pos) && canMove(pos))
             {
-                mat[position.Line, position.Column] = true;
-                if (Board.Piece(position) != null && Board.Piece(position).Color != Color)
+                mat[pos.line, pos.column] = true;
+                if (board.piece(pos) != null && board.piece(pos).color != color)
                 {
                     break;
                 }
-                position.Line = position.Line - 1;
+                pos.line = pos.line - 1;
             }
-            
-            //abaixo
-            position.SetValues(position.Line + 1, position.Column);
-            while (Board.IsPositionValid(position) && canMove(position))
+
+            // abaixo
+            pos.setValues(position.line + 1, position.column);
+            while (board.isPositionValid(pos) && canMove(pos))
             {
-                mat[position.Line, position.Column] = true;
-                if (Board.Piece(position) != null && Board.Piece(position).Color != Color)
+                mat[pos.line, pos.column] = true;
+                if (board.piece(pos) != null && board.piece(pos).color != color)
                 {
                     break;
                 }
-                position.Line = position.Line + 1;
+                pos.line = pos.line + 1;
             }
-            //right
-            position.SetValues(position.Line, position.Column + 1);
-            while (Board.IsPositionValid(position) && canMove(position))
+
+            // direita
+            pos.setValues(position.line, position.column + 1);
+            while (board.isPositionValid(pos) && canMove(pos))
             {
-                mat[position.Line, position.Column] = true;
-                if (Board.Piece(position) != null && Board.Piece(position).Color != Color)
+                mat[pos.line, pos.column] = true;
+                if (board.piece(pos) != null && board.piece(pos).color != color)
                 {
                     break;
                 }
-                position.Column = position.Column + 1;
+                pos.column = pos.column + 1;
             }
-            //left
-            position.SetValues(position.Line, position.Column - 1);
-            while (Board.IsPositionValid(position) && canMove(position))
+
+            // esquerda
+            pos.setValues(position.line, position.column - 1);
+            while (board.isPositionValid(pos) && canMove(pos))
             {
-                mat[position.Line, position.Column] = true;
-                if (Board.Piece(position) != null && Board.Piece(position).Color != Color)
+                mat[pos.line, pos.column] = true;
+                if (board.piece(pos) != null && board.piece(pos).color != color)
                 {
                     break;
                 }
-                position.Column = position.Column - 1;
+                pos.column = pos.column - 1;
             }
+
             return mat;
         }
     }

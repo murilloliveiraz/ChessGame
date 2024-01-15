@@ -1,4 +1,4 @@
-﻿namespace ChessGame.ChessBoard
+﻿namespace ChessBoard
 {
     internal enum Color
     {

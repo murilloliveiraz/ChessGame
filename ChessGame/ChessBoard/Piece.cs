@@ -1,27 +1,25 @@
-﻿using ChessBoard;
-
-namespace ChessGame.ChessBoard
+﻿namespace ChessBoard
 {
-    abstract internal class Piece
+    internal abstract class Piece
     {
-        public Position Position { get; set; }
-        public Color Color { get; protected set; }
-        public int AmountOfMovements { get; protected set; }
-        public Board Board { get; protected set; }
+        public Position position { get; set; }
+        public Color color { get; protected set; }
+        public int amountOfMovements { get; protected set; }
+        public Board board { get; protected set; }
 
-        public Piece( Board board, Color color)
+        public Piece(Board board, Color color)
         {
-            Position = null;
-            Color = color;
-            AmountOfMovements = 0;
-            Board = board;
+            this.position = null;
+            this.board = board;
+            this.color = color;
+            this.amountOfMovements = 0;
         }
 
-        public void IncreaseAmountOfMovements()
+        public void increaseAmountOfMovements()
         {
-            AmountOfMovements++;
+            amountOfMovements++;
         }
 
-        public abstract bool[,] PossibleMovements();
+        public abstract bool[,] possibleMovements();
     }
 }
