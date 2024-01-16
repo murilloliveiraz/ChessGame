@@ -36,6 +36,7 @@ namespace ChessGame
                         Console.WriteLine();
                         Console.Write("Destino: ");
                         Position destiny = Screen.readChessMovement().toBoardPosition();
+                        match.validateDestinyPosition(origin, destiny);
 
                         match.chessMove(origin, destiny);
                     }
