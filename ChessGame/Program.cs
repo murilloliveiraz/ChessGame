@@ -18,11 +18,7 @@ namespace ChessGame
                     try
                     {
                         Console.Clear();
-                        Screen.showBoard(match.board);
-                        Console.WriteLine();
-                        Console.WriteLine("Turno: " + match.turn);
-                        Console.WriteLine("Aguardando jogada do Jogador: " + match.currentPlayer);
-
+                        Screen.startMatch(match);
                         Console.WriteLine();
                         Console.Write("Origem: ");
                         Position origin = Screen.readChessMovement().toBoardPosition();
