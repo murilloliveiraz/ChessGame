@@ -2,6 +2,7 @@
 {
     internal abstract class Piece
     {
+
         public Position position { get; set; }
         public Color color { get; protected set; }
         public int amountOfMovements { get; protected set; }
@@ -34,6 +35,11 @@
                 }
             }
             return false;
+        }
+
+        public bool canMoveTo(Position pos)
+        {
+            return possibleMovements()[pos.line, pos.column];
         }
 
         public abstract bool[,] possibleMovements();

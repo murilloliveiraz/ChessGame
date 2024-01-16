@@ -54,7 +54,7 @@
 
         public bool isPositionValid(Position pos)
         {
-            if (pos.line < 0 || pos.line > lines || pos.column < 0 || pos.column >= columns)
+            if (pos.line < 0 || pos.line >= lines || pos.column < 0 || pos.column >= columns)
             {
                 return false;
             }

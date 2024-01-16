@@ -1,6 +1,7 @@
 ﻿using ChessBoard;
 using Chess;
 using System;
+using System.Security.Cryptography;
 
 namespace ChessGame
 {
@@ -11,6 +12,7 @@ namespace ChessGame
             try
             {
                 ChessMatch match = new ChessMatch();
+
                 while (!match.finished)
                 {
                     try

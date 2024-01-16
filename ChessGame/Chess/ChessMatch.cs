@@ -35,15 +35,15 @@ namespace Chess
 
         public void validateOriginPosition(Position pos)
         {
-            if(board.piece(pos) == null)
+            if (board.piece(pos) == null)
             {
                 throw new BoardExceptions("Não existe peça na posição de origem");
             }
-            if(currentPlayer != board.piece(pos).color)
+            if (currentPlayer != board.piece(pos).color)
             {
                 throw new BoardExceptions("A peça de origem escolhida não é sua");
             }
-            if(!board.piece(pos).thereArePossibleMovements())
+            if (!board.piece(pos).thereArePossibleMovements())
             {
                 throw new BoardExceptions("Não existem movimentos possíveis para a peça na posição de origem");
             }

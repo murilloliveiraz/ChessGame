@@ -1,4 +1,5 @@
-﻿using ChessBoard;
+﻿using System;
+using ChessBoard;
 
 namespace Chess
 {
