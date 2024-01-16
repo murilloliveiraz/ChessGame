@@ -13,29 +13,38 @@ namespace ChessGame
                 ChessMatch match = new ChessMatch();
                 while (!match.finished)
                 {
-                    Console.Clear();
-                    Screen.showBoard(match.board);
-                    Console.WriteLine();
-                    Console.WriteLine("Turno: " + match.turn);
-                    Console.WriteLine("Aguardando jogada do Jogador: "+ match.currentPlayer);
+                    try
+                    {
+                        Console.Clear();
+                        Screen.showBoard(match.board);
+                        Console.WriteLine();
+                        Console.WriteLine("Turno: " + match.turn);
+                        Console.WriteLine("Aguardando jogada do Jogador: " + match.currentPlayer);
 
-                    Console.WriteLine();
-                    Console.Write("Origem: ");
-                    Position origin = Screen.readChessMovement().toBoardPosition();
+                        Console.WriteLine();
+                        Console.Write("Origem: ");
+                        Position origin = Screen.readChessMovement().toBoardPosition();
+                        match.validateOriginPosition(origin);
+                        
+                        bool[,] possiblePositions = match.board.piece(origin).possibleMovements();
 
-                    bool[,] possiblePositions = match.board.piece(origin).possibleMovements();
+                        Console.Clear();
+                        Screen.showBoard(match.board, possiblePositions);
 
-                    Console.Clear();
-                    Screen.showBoard(match.board, possiblePositions);
+                        Console.WriteLine();
+                        Console.Write("Destino: ");
+                        Position destiny = Screen.readChessMovement().toBoardPosition();
 
-                    Console.WriteLine();
-                    Console.Write("Destino: ");
-                    Position destiny = Screen.readChessMovement().toBoardPosition();
-
-                    match.chessMove(origin, destiny);
+                        match.chessMove(origin, destiny);
+                    }
+                    catch (BoardExceptions e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
                 }
             }
-            catch (Exception e)
+            catch (BoardExceptions e)
             {
                 Console.WriteLine("ERRO: " + e);
             }

@@ -20,6 +20,22 @@
             amountOfMovements++;
         }
 
+        public bool thereArePossibleMovements()
+        {
+            bool[,] mat = possibleMovements();
+            for (int i = 0; i < board.lines; i++)
+            {
+                for (int j = 0; j < board.columns; j++)
+                {
+                    if (mat[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         public abstract bool[,] possibleMovements();
     }
 }
