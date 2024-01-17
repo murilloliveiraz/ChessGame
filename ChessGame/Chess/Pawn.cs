@@ -5,9 +5,11 @@ namespace Chess
 
     class Pawn : Piece
     {
+        private ChessMatch match;
 
-        public Pawn(Board tab, Color cor) : base(tab, cor)
+        public Pawn(Board tab, Color cor, ChessMatch match) : base(tab, cor)
         {
+            this.match = match;
         }
 
         public override string ToString()

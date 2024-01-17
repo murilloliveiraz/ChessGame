@@ -37,6 +37,27 @@ namespace Chess
             {
                 captured.Add(capturedPiece);
             }
+
+            //special played - kingside
+            if(piece is King && destiny.column == origin.column + 2)
+            {
+                Position originT = new Position(origin.line, origin.column + 3);
+                Position destinyT = new Position(origin.line, origin.column + 1);
+                Piece T = board.removePiece(originT);
+                T.increaseAmountOfMovements();
+                board.putPiece(T, destinyT);
+            }
+            
+            //special played - queenside
+            if(piece is King && destiny.column == origin.column - 2)
+            {
+                Position originT = new Position(origin.line, origin.column - 4);
+                Position destinyT = new Position(origin.line, origin.column - 1);
+                Piece T = board.removePiece(originT);
+                T.increaseAmountOfMovements();
+                board.putPiece(T, destinyT);
+            }
+
             return capturedPiece;
         }
 
@@ -50,6 +71,26 @@ namespace Chess
                 captured.Remove(capturedPiece);
             }
             board.putPiece(p, origin);
+
+            //special played - kingside
+            if (p is King && destiny.column == origin.column + 2)
+            {
+                Position originT = new Position(origin.line, origin.column + 3);
+                Position destinyT = new Position(origin.line, origin.column + 1);
+                Piece T = board.removePiece(destinyT);
+                T.decreaseAmountOfMovements();
+                board.putPiece(T, originT);
+            }
+
+            //special played - queenside
+            if (p is King && destiny.column == origin.column - 2)
+            {
+                Position originT = new Position(origin.line, origin.column - 4);
+                Position destinyT = new Position(origin.line, origin.column - 1);
+                Piece T = board.removePiece(destinyT);
+                T.decreaseAmountOfMovements();
+                board.putPiece(T, originT);
+            }
         }
 
         public void chessMove(Position origin, Position destiny)
@@ -220,35 +261,35 @@ namespace Chess
             putNewPiece('b', 1, new Knight(board, Color.Branco));
             putNewPiece('c', 1, new Bishop(board, Color.Branco));
             putNewPiece('d', 1, new Queen(board, Color.Branco));
-            putNewPiece('e', 1, new King(board, Color.Branco));
+            putNewPiece('e', 1, new King(board, Color.Branco, this));
             putNewPiece('f', 1, new Bishop(board, Color.Branco));
             putNewPiece('g', 1, new Knight(board, Color.Branco));
             putNewPiece('h', 1, new Rook(board, Color.Branco));
-            putNewPiece('a', 2, new Pawn(board, Color.Branco));
-            putNewPiece('b', 2, new Pawn(board, Color.Branco));
-            putNewPiece('c', 2, new Pawn(board, Color.Branco));
-            putNewPiece('d', 2, new Pawn(board, Color.Branco));
-            putNewPiece('e', 2, new Pawn(board, Color.Branco));
-            putNewPiece('f', 2, new Pawn(board, Color.Branco));
-            putNewPiece('g', 2, new Pawn(board, Color.Branco));
-            putNewPiece('h', 2, new Pawn(board, Color.Branco));
+            putNewPiece('a', 2, new Pawn(board, Color.Branco, this));
+            putNewPiece('b', 2, new Pawn(board, Color.Branco, this));
+            putNewPiece('c', 2, new Pawn(board, Color.Branco, this));
+            putNewPiece('d', 2, new Pawn(board, Color.Branco, this));
+            putNewPiece('e', 2, new Pawn(board, Color.Branco, this));
+            putNewPiece('f', 2, new Pawn(board, Color.Branco, this));
+            putNewPiece('g', 2, new Pawn(board, Color.Branco, this));
+            putNewPiece('h', 2, new Pawn(board, Color.Branco, this));
 
             putNewPiece('a', 8, new Rook(board, Color.Preto));
             putNewPiece('b', 8, new Knight(board, Color.Preto));
             putNewPiece('c', 8, new Bishop(board, Color.Preto));
             putNewPiece('d', 8, new Queen(board, Color.Preto));
-            putNewPiece('e', 8, new King(board, Color.Preto));
+            putNewPiece('e', 8, new King(board, Color.Preto, this));
             putNewPiece('f', 8, new Bishop(board, Color.Preto));
             putNewPiece('g', 8, new Knight(board, Color.Preto));
             putNewPiece('h', 8, new Rook(board, Color.Preto));
-            putNewPiece('a', 7, new Pawn(board, Color.Preto));
-            putNewPiece('b', 7, new Pawn(board, Color.Preto));
-            putNewPiece('c', 7, new Pawn(board, Color.Preto));
-            putNewPiece('d', 7, new Pawn(board, Color.Preto));
-            putNewPiece('e', 7, new Pawn(board, Color.Preto));
-            putNewPiece('f', 7, new Pawn(board, Color.Preto));
-            putNewPiece('g', 7, new Pawn(board, Color.Preto));
-            putNewPiece('h', 7, new Pawn(board, Color.Preto));
+            putNewPiece('a', 7, new Pawn(board, Color.Preto, this));
+            putNewPiece('b', 7, new Pawn(board, Color.Preto, this));
+            putNewPiece('c', 7, new Pawn(board, Color.Preto, this));
+            putNewPiece('d', 7, new Pawn(board, Color.Preto, this));
+            putNewPiece('e', 7, new Pawn(board, Color.Preto, this));
+            putNewPiece('f', 7, new Pawn(board, Color.Preto, this));
+            putNewPiece('g', 7, new Pawn(board, Color.Preto, this));
+            putNewPiece('h', 7, new Pawn(board, Color.Preto, this));
         }
     }
 }
