@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 using ChessBoard;
 
 namespace Chess
@@ -213,23 +214,41 @@ namespace Chess
             board.putPiece(piece, new ChessPosition(column, line).toBoardPosition());
             pieces.Add(piece);
         }
-
         private void putPieces()
         {
-            putNewPiece('c', 2, new Rook(board, Color.Branco));
-            putNewPiece('d', 2, new Rook(board, Color.Branco));
-            putNewPiece('e', 2, new Rook(board, Color.Branco));
-            putNewPiece('c', 1, new Rook(board, Color.Branco));
-            putNewPiece('e', 1, new Rook(board, Color.Branco));
-            putNewPiece('d', 1, new King(board, Color.Branco));
-            putNewPiece('b', 1, new Rook(board, Color.Branco));
-            
-            //putNewPiece('c', 7, new Rook(board, Color.Preto));
-            putNewPiece('c', 8, new Rook(board, Color.Preto));
-            //putNewPiece('d', 7, new Rook(board, Color.Preto));
-            putNewPiece('e', 7, new Rook(board, Color.Preto));
-            putNewPiece('d', 8, new Rook(board, Color.Preto));
-            putNewPiece('a', 8, new King(board, Color.Preto));
+            putNewPiece('a', 1, new Rook(board, Color.Branco));
+            putNewPiece('b', 1, new Knight(board, Color.Branco));
+            putNewPiece('c', 1, new Bishop(board, Color.Branco));
+            putNewPiece('d', 1, new Queen(board, Color.Branco));
+            putNewPiece('e', 1, new King(board, Color.Branco));
+            putNewPiece('f', 1, new Bishop(board, Color.Branco));
+            putNewPiece('g', 1, new Knight(board, Color.Branco));
+            putNewPiece('h', 1, new Rook(board, Color.Branco));
+            putNewPiece('a', 2, new Pawn(board, Color.Branco));
+            putNewPiece('b', 2, new Pawn(board, Color.Branco));
+            putNewPiece('c', 2, new Pawn(board, Color.Branco));
+            putNewPiece('d', 2, new Pawn(board, Color.Branco));
+            putNewPiece('e', 2, new Pawn(board, Color.Branco));
+            putNewPiece('f', 2, new Pawn(board, Color.Branco));
+            putNewPiece('g', 2, new Pawn(board, Color.Branco));
+            putNewPiece('h', 2, new Pawn(board, Color.Branco));
+
+            putNewPiece('a', 8, new Rook(board, Color.Preto));
+            putNewPiece('b', 8, new Knight(board, Color.Preto));
+            putNewPiece('c', 8, new Bishop(board, Color.Preto));
+            putNewPiece('d', 8, new Queen(board, Color.Preto));
+            putNewPiece('e', 8, new King(board, Color.Preto));
+            putNewPiece('f', 8, new Bishop(board, Color.Preto));
+            putNewPiece('g', 8, new Knight(board, Color.Preto));
+            putNewPiece('h', 8, new Rook(board, Color.Preto));
+            putNewPiece('a', 7, new Pawn(board, Color.Preto));
+            putNewPiece('b', 7, new Pawn(board, Color.Preto));
+            putNewPiece('c', 7, new Pawn(board, Color.Preto));
+            putNewPiece('d', 7, new Pawn(board, Color.Preto));
+            putNewPiece('e', 7, new Pawn(board, Color.Preto));
+            putNewPiece('f', 7, new Pawn(board, Color.Preto));
+            putNewPiece('g', 7, new Pawn(board, Color.Preto));
+            putNewPiece('h', 7, new Pawn(board, Color.Preto));
         }
     }
 }

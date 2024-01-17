@@ -16,12 +16,6 @@
             this.column = column;
         }
 
-        public void SetValues(int line, int column)
-        {
-            line = line;
-            column = column;
-        }
-
         public override string ToString()
         {
             return $"{line}, {column}";
