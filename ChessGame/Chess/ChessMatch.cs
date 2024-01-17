@@ -68,8 +68,15 @@ namespace Chess
             {
                 check = false;
             }
-            turn++;
-            changeTurn();
+
+            if (testCheckmate(opponent(currentPlayer))){
+                finished = true;
+            }
+            else
+            {
+                turn++;
+                changeTurn();
+            }
         }
 
         public void validateOriginPosition(Position pos)
@@ -169,6 +176,38 @@ namespace Chess
             return false;
         }
 
+        public bool testCheckmate(Color color)
+        {
+            if (!areInCheck(color))
+            {
+                return false;
+            }
+            foreach (Piece x in piecesInGame(color))
+            {
+                bool[,] mat = x.possibleMovements();
+                for (int i = 0; i < board.lines; i++)
+                {
+                    for (int j = 0; i < board.columns; i++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Position origin = x.position;
+                            Position destiny = new Position(i, j);
+                            Piece captured = makeMovement(origin, destiny);
+                            bool testCheck = areInCheck(color);
+                            undoMove(origin, destiny, captured);
+                            if(!testCheck)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+
+                }
+            }
+            return true;
+        }
+
         public void putNewPiece(char column, int line, Piece piece)
         {
             board.putPiece(piece, new ChessPosition(column, line).toBoardPosition());
@@ -183,13 +222,14 @@ namespace Chess
             putNewPiece('c', 1, new Rook(board, Color.Branco));
             putNewPiece('e', 1, new Rook(board, Color.Branco));
             putNewPiece('d', 1, new King(board, Color.Branco));
+            putNewPiece('b', 1, new Rook(board, Color.Branco));
             
-            putNewPiece('c', 7, new Rook(board, Color.Preto));
+            //putNewPiece('c', 7, new Rook(board, Color.Preto));
             putNewPiece('c', 8, new Rook(board, Color.Preto));
-            putNewPiece('d', 7, new Rook(board, Color.Preto));
+            //putNewPiece('d', 7, new Rook(board, Color.Preto));
             putNewPiece('e', 7, new Rook(board, Color.Preto));
-            putNewPiece('e', 8, new Rook(board, Color.Preto));
-            putNewPiece('d', 8, new King(board, Color.Preto));
+            putNewPiece('d', 8, new Rook(board, Color.Preto));
+            putNewPiece('a', 8, new King(board, Color.Preto));
         }
     }
 }

@@ -14,10 +14,18 @@ namespace ChessGame
             showCapturedPieces(match);
             Console.WriteLine();
             Console.WriteLine("Turno: " + match.turn);
-            Console.WriteLine("Aguardando jogada do Jogador: " + match.currentPlayer);
-            if(match.check)
+            if(!match.finished)
             {
-                Console.WriteLine("XEQUE");
+                Console.WriteLine("Aguardando jogada do Jogador: " + match.currentPlayer);
+                if(match.check)
+                {
+                    Console.WriteLine("XEQUE");
+                }
+            }
+            else
+            {
+                Console.WriteLine("XEQUEMATE");
+                Console.WriteLine("Vencedor: " + match.currentPlayer);
             }
         }
 

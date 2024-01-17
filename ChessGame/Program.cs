@@ -42,6 +42,8 @@ namespace ChessGame
                         Console.ReadLine();
                     }
                 }
+                Console.Clear();
+                Screen.startMatch(match);
             }
             catch (BoardExceptions e)
             {
