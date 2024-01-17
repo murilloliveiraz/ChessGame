@@ -20,6 +20,10 @@
         {
             amountOfMovements++;
         }
+        public void decreaseAmountOfMovements()
+        {
+            amountOfMovements--;
+        }
 
         public bool thereArePossibleMovements()
         {

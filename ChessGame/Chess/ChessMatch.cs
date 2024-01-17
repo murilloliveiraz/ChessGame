@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ChessBoard;
 
 namespace Chess
@@ -11,6 +12,7 @@ namespace Chess
         public bool finished { get; private set; }
         private HashSet<Piece> pieces;
         private HashSet<Piece> captured;
+        public bool check { get; private set; }
 
         public ChessMatch()
         {
@@ -18,12 +20,13 @@ namespace Chess
             turn = 1;
             currentPlayer = Color.Branco;
             finished = false;
+            check = false;
             pieces = new HashSet<Piece>();
             captured = new HashSet<Piece>();
             putPieces();
         }
 
-        public void makeMovement(Position origin, Position destiny)
+        public Piece makeMovement(Position origin, Position destiny)
         {
             Piece piece = board.removePiece(origin);
             piece.increaseAmountOfMovements();
@@ -33,11 +36,38 @@ namespace Chess
             {
                 captured.Add(capturedPiece);
             }
+            return capturedPiece;
+        }
+
+        public void undoMove(Position origin, Position destiny, Piece capturedPiece)
+        {
+            Piece p = board.removePiece(destiny);
+            p.decreaseAmountOfMovements();
+            if (capturedPiece != null)
+            {
+                board.putPiece(capturedPiece, destiny);
+                captured.Remove(capturedPiece);
+            }
+            board.putPiece(p, origin);
         }
 
         public void chessMove(Position origin, Position destiny)
         {
-            makeMovement(origin, destiny);
+            Piece captured = makeMovement(origin, destiny);
+
+            if(areInCheck(currentPlayer))
+            {
+                undoMove(origin, destiny, captured);
+                throw new BoardExceptions("Voce nao pode se colocar em xeque");
+            }
+            if (areInCheck(opponent(currentPlayer)))
+            {
+                check = true;
+            }
+            else
+            {
+                check = false;
+            }
             turn++;
             changeTurn();
         }
@@ -95,6 +125,48 @@ namespace Chess
             }
             aux.ExceptWith(capturedPieces(color));
             return aux;
+        }
+
+        private Color opponent(Color color)
+        {
+            if (color == Color.Branco)
+            {
+                return Color.Preto;
+            }
+            else
+            {
+                return Color.Branco;
+            }
+        }
+
+        private Piece King(Color color)
+        {
+            foreach(Piece x in piecesInGame(color))
+            {
+                if(x is King)
+                {
+                    return x;
+                }
+            }
+            return null;
+        }
+
+        public bool areInCheck(Color color)
+        {
+            Piece K = King(color);
+            if (K == null)
+            {
+                throw new BoardExceptions("Não existe rei da cor "+ color + " no tabuleiro");
+            }
+            foreach (Piece x in piecesInGame(opponent(color)))
+            {
+                bool[,] mat = x.possibleMovements();
+                if (mat[K.position.line, K.position.column])
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void putNewPiece(char column, int line, Piece piece)
