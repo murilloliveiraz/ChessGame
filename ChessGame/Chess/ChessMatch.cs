@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
 using ChessBoard;
 
@@ -7,6 +6,7 @@ namespace Chess
 {
     internal class ChessMatch
     {
+
         public Board board { get; private set; }
         public int turn { get; private set; }
         public Color currentPlayer { get; private set; }
@@ -14,6 +14,7 @@ namespace Chess
         private HashSet<Piece> pieces;
         private HashSet<Piece> captured;
         public bool check { get; private set; }
+        public Piece vulneravelEnPassant { get; private set; }
 
         public ChessMatch()
         {
@@ -22,6 +23,7 @@ namespace Chess
             currentPlayer = Color.Branco;
             finished = false;
             check = false;
+            vulneravelEnPassant = null;
             pieces = new HashSet<Piece>();
             captured = new HashSet<Piece>();
             putPieces();
@@ -58,6 +60,25 @@ namespace Chess
                 board.putPiece(T, destinyT);
             }
 
+            //#En Passant
+            if (piece is Pawn)
+            {
+                if (origin.column != destiny.column && capturedPiece == null)
+                {
+                    Position posP;
+                    if (piece.color == Color.Branco)
+                    {
+                        posP = new Position(destiny.line + 1, destiny.column);
+                    }
+                    else
+                    {
+                        posP = new Position(destiny.line - 1, destiny.column);
+                    }
+                    capturedPiece = board.removePiece(posP);
+                    captured.Add(capturedPiece);
+                }
+            }
+
             return capturedPiece;
         }
 
@@ -91,6 +112,25 @@ namespace Chess
                 T.decreaseAmountOfMovements();
                 board.putPiece(T, originT);
             }
+
+            // En passant
+            if (p is Pawn)
+            {
+                if(origin.column != destiny.column && capturedPiece == vulneravelEnPassant)
+                {
+                    Piece pawn = board.removePiece(destiny);
+                    Position posP;
+                    if(p.color == Color.Branco)
+                    {
+                        posP = new Position(3, destiny.column);
+                    }
+                    else
+                    {
+                        posP = new Position(4, destiny.column);
+                    }
+                    board.putPiece(pawn, posP);
+                }
+            }
         }
 
         public void chessMove(Position origin, Position destiny)
@@ -118,6 +158,18 @@ namespace Chess
             {
                 turn++;
                 changeTurn();
+            }
+
+            Piece p = board.piece(destiny);
+
+            //# Special Play - En Passant
+            if(p is Pawn && (destiny.line == origin.line - 2) || (destiny.line == origin.line + 2))
+            {
+                vulneravelEnPassant = p;
+            }
+            else
+            {
+                vulneravelEnPassant = null;
             }
         }
 

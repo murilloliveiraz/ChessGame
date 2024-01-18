@@ -31,6 +31,7 @@ namespace Chess
         public override bool[,] possibleMovements()
         {
             bool[,] mat = new bool[board.lines, board.columns];
+
             Position pos = new Position(0, 0);
 
             if (color == Color.Branco)
@@ -56,6 +57,21 @@ namespace Chess
                 {
                     mat[pos.line, pos.column] = true;
                 }
+
+                //En Passant
+                if (position.line == 3)
+                {
+                    Position left = new Position(position.line, position.column - 1);
+                    if (board.isPositionValid(left) && thereIsOpponent(left) && board.piece(left) == match.vulneravelEnPassant)
+                    {
+                        mat[left.line - 1, left.column] = true;
+                    }
+                    Position right = new Position(position.line, position.column + 1);
+                    if (board.isPositionValid(right) && thereIsOpponent(right) && board.piece(right) == match.vulneravelEnPassant)
+                    {
+                        mat[right.line - 1, right.column] = true;
+                    }
+                }
             }
             else
             {
@@ -79,6 +95,20 @@ namespace Chess
                 if (board.isPositionValid(pos) && thereIsOpponent(pos))
                 {
                     mat[pos.line, pos.column] = true;
+                }
+                //En Passant
+                if (position.line == 4)
+                {
+                    Position left = new Position(position.line, position.column - 1);
+                    if (board.isPositionValid(left) && thereIsOpponent(left) && board.piece(left) == match.vulneravelEnPassant)
+                    {
+                        mat[left.line + 1, left.column] = true;
+                    }
+                    Position right = new Position(position.line, position.column + 1);
+                    if (board.isPositionValid(right) && thereIsOpponent(right) && board.piece(right) == match.vulneravelEnPassant)
+                    {
+                        mat[right.line + 1, right.column] = true;
+                    }
                 }
             }
 
