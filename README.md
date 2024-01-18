@@ -1,6 +1,6 @@
 # Chess Game
 
-<img src="imagem.png" alt="Exemplo imagem">
+<img src="https://github.com/murilloliveiraz/ChessGame/blob/master/ChessGame/chess.jfif" alt="Exemplo imagem" width="600px">
 
 > Jogo de Xadrez desenvolvido com C# e .NET a nível Console.
 
